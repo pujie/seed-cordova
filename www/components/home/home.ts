@@ -7,7 +7,6 @@ export default angular.module('app.home', [
     require('angular-material')
 ])
     .controller('HomeController', HomeController)
-    .name
 
 HomeController.$inject = ['$mdSidenav'];
 

@@ -4,7 +4,6 @@ var animal = require('./animal.ts');
 
 export default angular.module('app.aws', [])
     .controller('AwsController', AwsController)
-    .name
 
 AwsController.$inject = ['$window', '$timeout', '$q', '$scope'];
 

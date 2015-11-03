@@ -13,16 +13,31 @@ export default function routerConfig($stateProvider, $urlRouterProvider) {
 	.state('home', {
 	    url: '/home',
 	    template: require('../components/home/home.html'),
-	    controller: 'HomeController as home'
+	    controller: 'HomeController as home',
 	})
 	.state('page2', {
 	    url: '/page2',
 	    template: require('../components/page2/page2.html'),
-	    controller: 'Page2Controller as page2'
+	    controller: 'Page2Controller as page2',
+	})
+	.state('users', {
+		url: '/users',
+		template: require('../components/users/users.html'),
+		controller: 'UsersController as users',
+		resolve: {
+			userId: ['$stateParams', function($stateParams) {
+				return $stateParams.userId;
+			}]
+		}
+	})
+	.state('usersDetail', {
+		url: '/users/{userId}',
+		template: require('../components/users/users.detail.html'),
+		controller: 'UsersDetailController as usersDetail', 
 	})
 	.state('aws', {
 	    url: '/aws',
 	    template: require('../components/aws/aws.html'),
-	    controller: 'AwsController as aws'
+	    controller: 'AwsController as aws',
 	});
 }
