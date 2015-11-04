@@ -48,6 +48,7 @@
     "angular-aria": "^1.4.7",
     "angular-material": "^0.11.4",
     "angular-material-icons": "^0.6.0",
+    "angular-touch": "^1.4.7",
     "angular-ui-router": "^0.2.15",
     "auth0-users": "^0.2.5",
     "aws-sdk": "^2.2.12",

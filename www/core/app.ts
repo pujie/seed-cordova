@@ -11,6 +11,7 @@ const routerConfig = require('./router.ts');
 export default angular.module('app', [
     require('angular-material'),
     require('angular-ui-router'),
+    require('angular-touch'),
     require('../components/home/home.ts').name,
     require('../components/page2/page2.ts').name,
     require('../components/aws/aws.ts').name,
