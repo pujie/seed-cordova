@@ -17,6 +17,7 @@ export default angular.module('app', [
     require('../components/users/users.ts').name,
     require('../components/users/users.detail.ts').name,
     require('../components/aws/aws.ts').name,
+    require('../components/auth0/auth0.ts').name,
 ])
     .config(routerConfig)
     .name

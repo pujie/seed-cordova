@@ -39,5 +39,10 @@ export default function routerConfig($stateProvider, $urlRouterProvider) {
 	    url: '/aws',
 	    template: require('../components/aws/aws.html'),
 	    controller: 'AwsController as aws',
+	})
+	.state('auth0', {
+	    url: '/auth0',
+	    template: require('../components/auth0/auth0.html'),
+	    controller: 'Auth0Controller as auth0',
 	});
 }

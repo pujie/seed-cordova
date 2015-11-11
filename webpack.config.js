@@ -25,6 +25,17 @@ module.exports = {
 
     loaders: [
 
+      // auth0-lock
+      //     { test: /node_modules\/auth0-lock\/.*\.js$/,
+      // 	loaders: [
+      // 	  'transform/cacheable?brfs',
+      // 	  'transform/cacheable?packageify'
+      // 	]
+      //       }, {
+      // 	test: /node_modules\/auth0-lock\/.*\.ejs$/,
+      // 	loader: 'transform/cacheable?ejsify'
+      //       },
+
       // { test: /aws-sdk*browser/, loader: 'transform?brfs' },
       { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, loader: 'style!css' },

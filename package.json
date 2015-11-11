@@ -60,9 +60,14 @@
     "angular-touch": "^1.4.7",
     "angular-ui-router": "^0.2.15",
     "auth0-angular": "^4.0.4",
+    "auth0-lock": "^7.10.3",
     "auth0-users": "^0.2.5",
     "aws-sdk": "^2.2.12",
     "bluebird": "^3.0.2",
-    "immutable": "^3.7.5"
+    "brfs": "^1.4.1",
+    "ejsify": "^1.0.0",
+    "immutable": "^3.7.5",
+    "packageify": "^0.2.3",
+    "transform-loader": "^0.2.3"
   }
 }
