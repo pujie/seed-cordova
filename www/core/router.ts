@@ -33,7 +33,7 @@ export default function routerConfig($stateProvider, $urlRouterProvider) {
 	.state('usersDetail', {
 		url: '/users/{userId}',
 		template: require('../components/users/users.detail.html'),
-		controller: 'UsersDetailController as usersDetail', 
+		controller: 'UsersDetailController as usersDetail',
 	})
 	.state('aws', {
 	    url: '/aws',

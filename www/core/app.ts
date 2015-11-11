@@ -14,9 +14,9 @@ export default angular.module('app', [
     require('angular-touch'),
     require('../components/home/home.ts').name,
     require('../components/page2/page2.ts').name,
-    require('../components/aws/aws.ts').name,
     require('../components/users/users.ts').name,
     require('../components/users/users.detail.ts').name,
+    require('../components/aws/aws.ts').name,
 ])
     .config(routerConfig)
     .name
