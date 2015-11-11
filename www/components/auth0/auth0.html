@@ -1,4 +1,11 @@
+<script src="//cdn.auth0.com/js/lock-7.9.min.js"></script>
+<script src="//cdn.auth0.com/w2/auth0-angular-4.js"></script>
 
 <h1>auth0</h1>
 Hello World
 {{auth0}}
+
+<input type="submit" ng-click="auth0.login()" value="Login" />
+
+
+<input type="submit" ng-click="auth0.logout()" value="Logout" />
