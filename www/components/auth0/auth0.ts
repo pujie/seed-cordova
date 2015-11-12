@@ -11,15 +11,34 @@ export default angular.module('app.auth0', [
     .run(Auth0Run)
     .controller('Auth0Controller', Auth0Controller);
 
-Auth0Run.$inject = ['auth'];
+Auth0Run.$inject = ['auth', '$rootScope', 'store', 'jwtHelper', '$location'];
 
-function Auth0Run(auth) {
+function Auth0Run(auth, $rootScope, store, jwtHelper, $location) {
     auth.hookEvents();
+
+    // To keep user logged in, retrieve token from localStorage on each page refresh
+
+    $rootScope.$on('$locationChangeStart', () => {
+	let token = store.get('token');
+	if (token) {
+	    if (!jwtHelper.isTokenExpired(token)) {
+		if (!auth.isAuthenticated) {
+		    auth.authenticate(store.get('profile'), token);
+		}
+	    } else {
+		// Either show login page or use the refresh token to get new idToken
+		// TODO: write code to use refresh token
+
+		// show login page
+		$location.path('/auth0');
+	    }
+	}
+    });
 }
 
-Auth0Config.$inject = ['authProvider'];
+Auth0Config.$inject = ['authProvider', '$httpProvider', 'jwtInterceptorProvider'];
 
-function Auth0Config(authProvider) {
+function Auth0Config(authProvider, $httpProvider, jwtInterceptorProvider) {
     authProvider.init({
   	domain: 'louislarry.auth0.com',
   	// clientId: 'yrZ74GnnkjNpjKDbWlLPVtMkyTetcwm7',
@@ -28,6 +47,12 @@ function Auth0Config(authProvider) {
         loginState: 'auth0',
 	// sso: true,
     });
+
+    jwtInterceptorProvider.tokenGetter = ['store', function(store) {
+	return store.get('token');
+    }];
+
+    $httpProvider.interceptors.push('jwtInterceptor');
 
     authProvider.on('authenticated', ['$location', function($location) {
 	console.log('on authenticated');
@@ -40,7 +65,6 @@ function Auth0Config(authProvider) {
 			 profilePromise.then( profile => {
 			     store.set('profile', profile);
 			     store.set('token', idToken);
-
 			 });
 			 $location.path('/');
 		     }]);
@@ -50,9 +74,12 @@ function Auth0Config(authProvider) {
 	$location.path('/error');
     }]);
 
-    authProvider.on('logout', () => {
+    authProvider.on('logout', ['store', function(store) {
 	console.log('on logout');
-    });
+	store.remove('profile');
+	store.remove('idToken');
+
+    }]);
 
     authProvider.on('forbidden', () => {
 	console.log('on forbidden');
